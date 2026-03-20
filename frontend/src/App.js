@@ -4,7 +4,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5159/weatherforecast")
+    fetch("https://se3022-react-dotnet-azure-app.azurewebsites.net/weatherforecast")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.error(err));

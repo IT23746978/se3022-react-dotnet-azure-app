@@ -11,14 +11,20 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 app.UseCors("AllowReact");
-app.UseAuthorization();
-app.MapControllers();
+
+app.MapGet("/weatherforecast", () =>
+{
+    var data = new[]
+    {
+        new { date = "2026-03-20", temperatureC = 28, summary = "Warm" },
+        new { date = "2026-03-21", temperatureC = 30, summary = "Hot" },
+        new { date = "2026-03-22", temperatureC = 27, summary = "Cloudy" }
+    };
+
+    return Results.Ok(data);
+});
 
 app.Run();
